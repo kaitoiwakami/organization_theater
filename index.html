@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization theater 新作トライアルお申し込み</title>
+    <script src="https://sdk.form.run/js/v2/embed.js"></script>
+    <style>
+        /* 全体のスタイル */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #formContainer { display: none; }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="countdown"></p>
+        <div id="formContainer">
+            <div
+                class="formrun-embed"
+                data-formrun-form="@organizationtheater"
+                data-formrun-redirect="true">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 指定日時を2024年10月30日14時20分に設定
+        const targetDate = new Date("2024-10-30T14:22:00");
+        const formContainer = document.getElementById("formContainer");
+        const countdownElement = document.getElementById("countdown");
+
+        function updateCountdown() {
+            const now = new Date();
+            const remainingTime = targetDate - now;
+
+            if (remainingTime <= 0) {
+                countdownElement.textContent = "申し込みが開始されました！";
+                formContainer.style.display = "block"; // iframe表示
+                clearInterval(countdownInterval); // カウントダウン停止
+            } else {
+                const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 *
